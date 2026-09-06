@@ -13,3 +13,4 @@ numpy>=1.26.0
 ortools>=9.10.0
 python-multipart>=0.0.9
 requests>=2.31.0
+email-validator>=2.2.0
