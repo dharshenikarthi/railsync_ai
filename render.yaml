@@ -4,10 +4,10 @@ services:
     name: railsync-backend
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
-        value: 3.10.0
+        value: 3.10.12
       - key: DATABASE_URL
         fromDatabase:
           name: railsync-db
@@ -27,12 +27,9 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        fromService:
-          type: web
-          name: railsync-backend
-          property: url
+        value: https://railsync-backend.onrender.com/api
 
 databases:
   - name: railsync-db
-    databaseName: RAILSYNC_AI_DB
+    databaseName: railsync_ai_db
     user: railsync_admin
